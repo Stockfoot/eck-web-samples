@@ -1,0 +1,63 @@
+/* Details/Summary styles that includes open/close transitions with a11y hover/focuse underlining. */
+
+details {
+		border-bottom: 1px solid color-preset(black);
+
+		// Adds transition effect for opening details/summary.
+		height: auto;
+		max-height: 80px;
+		transition: all 0.2s ease;
+
+		&:hover {
+			cursor: pointer;
+		}
+
+		summary {
+			font-size: 22px;
+			list-style: none;
+			margin-top: 0;
+			margin-bottom: 0;
+			padding: 25px 0;
+			text-decoration: underline 0.2em rgba(0, 0, 0, 0);
+			text-underline-offset: 0.4em;
+			transition: text-decoration-color 300ms, text-underline-offset 300ms;
+
+			&:hover {
+				text-decoration-color: color-preset(a11y-blue);
+			}
+		}
+
+		p {
+			padding-right: 10px;
+			padding-left: 10px;
+		}
+	}
+
+	details[open] {
+		border-bottom: none;
+
+		// Adds transition effect for opening details/summary.
+		max-height: 99rem;
+		transition: all 1s ease;
+
+		summary {
+			border-bottom: 1px solid color-preset(black);
+		}
+	}
+
+	// Adds a subtle animation when the user opens a details/summary.
+	details[open] summary~* {
+		animation: sweep .5s ease-in-out;
+	}
+
+	@keyframes sweep {
+		0% {
+			opacity: 0;
+			transform: translateX(-10px)
+		}
+
+		100% {
+			opacity: 1;
+			transform: translateX(0)
+		}
+	}
